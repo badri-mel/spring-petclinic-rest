@@ -231,5 +231,20 @@ The [issue tracker](https://github.com/spring-petclinic/spring-petclinic-rest/is
 For pull requests, editor preferences are available in the [editor config](https://github.com/spring-petclinic/spring-petclinic-rest/blob/master/.editorconfig) for easy use in common text editors. Read more and download plugins at <http://editorconfig.org>.
 
 
+# Build docker image for ECR
 
+`docker build -t docker.io/library/spring-petclinic-rest:3.2.1 .
+`
+# Authenticate docker client to AWS ECR 
 
+`aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <ECR>
+`
+# Tag docker image for ECR 
+
+`docker tag docker.io/library/spring-petclinic-rest:3.2.1 <ECR>:3.2.1
+`
+
+# Push docker image to ECR 
+
+`docker push <ECR>:3.2.1
+`
